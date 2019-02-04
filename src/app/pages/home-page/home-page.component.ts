@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { PokemonService } from 'src/app/shared/services/pokemon/pokemon.service';
 import { Pokemon } from 'src/app/shared/models/pokemon';
+import { EVENT_MANAGER_PLUGINS } from '@angular/platform-browser';
 
 @Component({
 	selector: 'app-home-page',
@@ -8,6 +9,17 @@ import { Pokemon } from 'src/app/shared/models/pokemon';
 	styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
+	@HostListener("window:scroll", ["$event"])
+	onWindowScroll(event) {
+		const pos = event.srcElement.scrollingElement.clientHeight + event.srcElement.scrollingElement.scrollTop;
+		const max = event.srcElement.scrollingElement.offsetHeight;
+		if (pos >= max) {
+			console.log('pedir más');
+			this.pokemonService.getPokemonList().subscribe((pokemons: Pokemon[]) => {
+				pokemons.forEach(pokemon => this.pokemons.push(pokemon));
+			});
+		}
+	}
 
 	public pokemons: Pokemon[] = [];
 
