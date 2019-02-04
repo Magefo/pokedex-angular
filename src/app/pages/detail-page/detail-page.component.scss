@@ -1,0 +1,23 @@
+@import "src/sass/pokedex-variables";
+
+.pokemon-section {
+	border: 2px solid $primary;
+	border-radius: 1rem;
+	.pokemon-header {
+		background-color: #3663ad;
+		border-radius: 0.7rem 0.7rem 0 0;
+		padding: 0.3rem;
+		.pokemon-title {
+			text-transform: capitalize;
+			font-weight: bold;
+			color: #FFFFFF;
+		}
+	}
+	.pokemon-body {
+		padding: 0.4rem;
+		.pokemon-subtitle {
+			color: $primary;
+			font-weight: bold;
+		}
+	}
+}

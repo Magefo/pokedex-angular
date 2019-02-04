@@ -1,0 +1,27 @@
+@import "src/sass/pokedex-variables";
+
+.pokemon-card {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 2rem;
+    border-radius: 0.4rem;
+	border: 2px solid $primary;
+	box-sizing: content-box;
+	display: block;
+	cursor: pointer;
+	.pokemon-card-img {
+		height: 7rem;
+		justify-content: center;
+		display: flex;
+		align-items: center;
+	}
+	.pokemon-card-info {
+		background-color: $primary;
+		text-transform: capitalize;
+		color: #FFFFFF;
+		height: 7rem;
+		justify-content: center;
+		display: flex;
+		align-items: center;
+	}
+}

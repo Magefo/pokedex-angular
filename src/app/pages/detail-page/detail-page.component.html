@@ -1,0 +1,58 @@
+<div class="container">
+	<div class="row  justify-content-center">
+		<div class="col-12 col-lg-6">
+			<div class="row">
+
+				<div class="col-12 text-center">
+					<div class="pokemon-section">
+						<!-- Header -->
+						<div class="pokemon-header">
+							<h2 class="pokemon-title">{{pokemon.data.name}}</h2>
+						</div>
+
+						<!-- Body -->
+						<div class="pokemon-body">
+							<!-- Basic -->
+							<img [src]="pokemon.imgUrl" alt="{{pokemon.name}}" class="img-fluid">
+							<img [src]="pokemon.data.sprites.back_default" alt="{{pokemon.name}} back" class="img-fluid">
+							<h6><b class="text-primary">Height:</b> {{pokemon.data.height}} decimetres</h6>
+							<h6><b class="text-primary">Weight:</b> {{pokemon.data.weight}} hectograms</h6>
+							<h6><b class="text-primary">Base experience:</b> {{pokemon.data.base_experience}}</h6>
+
+							<hr class="w-100">
+
+							<div class="row">
+								<!-- Types -->
+								<div class="col-6">
+									<h5 class="pokemon-subtitle">Type</h5>
+									<h6 *ngFor="let t of pokemon.data.types; let i=index">{{t.type.name}}</h6>
+								</div>
+								<!-- Abilities -->
+								<div class="col-6">
+									<h5 class="pokemon-subtitle">Abilities</h5>
+									<h6 *ngFor="let p of pokemon.data.abilities; let i=index">{{p.ability.name}}</h6>
+								</div>
+							</div>
+
+							<hr class="w-100">
+
+							<div class="row">
+								<!-- Stats -->
+								<div class="col-12">
+									<h5 class="pokemon-subtitle">Stats</h5>
+									<div class="row">
+										<div class="col-6 text-center" *ngFor="let s of pokemon.data.stats; let i=index">
+											<h6>{{s.stat.name}}</h6>
+											<h1 class="text-secondary font-weight-bold">{{s.base_stat}}</h1>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
