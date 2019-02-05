@@ -14,12 +14,12 @@ export class PokemonService {
 
 	public selectedPokemon: Pokemon;
 	private initialPokemonsUrl = 'https://pokeapi.co/api/v2/pokemon';
-	private morePokemonsUrl: String;
+	private morePokemonsUrl: string;
 
 	constructor(private http: HttpClient) { }
 
 	public getPokemonList(): Observable<Pokemon[]> {
-		let pokemonsUrl = isNullOrUndefined(this.morePokemonsUrl) ? `${this.initialPokemonsUrl}?limit=${limit}` : this.morePokemonsUrl;
+		const pokemonsUrl = isNullOrUndefined(this.morePokemonsUrl) ? `${this.initialPokemonsUrl}?limit=${limit}` : this.morePokemonsUrl;
 		return this.http.get<Pokemon[]>(`${pokemonsUrl}`).pipe(
 			tap((data: any) => this.morePokemonsUrl = data.next),
 			map((data: any) => data.results),

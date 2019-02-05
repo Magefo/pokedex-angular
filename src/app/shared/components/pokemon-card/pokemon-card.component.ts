@@ -21,7 +21,7 @@ export class PokemonCardComponent implements OnInit {
 		this.pokemonService.getPokemonByName(this.pokemon.url).subscribe((data: any) => {
 			this.pokemon.imgUrl = data.sprites.front_default;
 			this.pokemon.data = data;
-		})
+		});
 	}
 
 	public showDetail() {

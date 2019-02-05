@@ -9,7 +9,19 @@ import { EVENT_MANAGER_PLUGINS } from '@angular/platform-browser';
 	styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
-	@HostListener("window:scroll", ["$event"])
+
+	public pokemons: Pokemon[] = [];
+
+
+	constructor(private pokemonService: PokemonService) { }
+
+	ngOnInit() {
+		this.pokemonService.getPokemonList().subscribe((pokemons: Pokemon[]) => {
+			this.pokemons = pokemons;
+		});
+	}
+
+	@HostListener('window:scroll', ['$event'])
 	onWindowScroll(event) {
 		const pos = event.srcElement.scrollingElement.clientHeight + event.srcElement.scrollingElement.scrollTop;
 		const max = event.srcElement.scrollingElement.offsetHeight;
@@ -19,16 +31,6 @@ export class HomePageComponent implements OnInit {
 				pokemons.forEach(pokemon => this.pokemons.push(pokemon));
 			});
 		}
-	}
-
-	public pokemons: Pokemon[] = [];
-
-	constructor(private pokemonService: PokemonService) { }
-
-	ngOnInit() {
-		this.pokemonService.getPokemonList().subscribe((pokemons: Pokemon[]) => {
-			this.pokemons = pokemons;
-		});
 	}
 
 }
