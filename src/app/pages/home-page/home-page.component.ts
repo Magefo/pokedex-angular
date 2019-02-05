@@ -12,22 +12,22 @@ export class HomePageComponent implements OnInit {
 
 	public pokemons: Pokemon[] = [];
 
-
 	constructor(private pokemonService: PokemonService) { }
 
 	ngOnInit() {
 		this.pokemonService.getPokemonList().subscribe((pokemons: Pokemon[]) => {
 			this.pokemons = pokemons;
+			setTimeout(_ => document.dispatchEvent(new CustomEvent('scroll')), 1000);
 		});
 	}
 
-	@HostListener('window:scroll', ['$event'])
-	onWindowScroll(event) {
+	@HostListener('document:scroll', ['$event'])
+	public onWindowScroll(event) {
 		const pos = event.srcElement.scrollingElement.clientHeight + event.srcElement.scrollingElement.scrollTop;
 		const max = event.srcElement.scrollingElement.offsetHeight;
 		if (pos >= max) {
-			console.log('pedir más');
-			this.pokemonService.getPokemonList().subscribe((pokemons: Pokemon[]) => {
+			const offset = this.pokemons.length;
+			this.pokemonService.getPokemonList(offset).subscribe((pokemons: Pokemon[]) => {
 				pokemons.forEach(pokemon => this.pokemons.push(pokemon));
 			});
 		}

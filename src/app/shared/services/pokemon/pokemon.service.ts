@@ -5,7 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { isNullOrUndefined } from 'util';
 
-const limit = 20;
+const LIMIT = 20;
+const POKEMONS_URL = 'https://pokeapi.co/api/v2/pokemon';
 
 @Injectable({
 	providedIn: 'root'
@@ -13,21 +14,18 @@ const limit = 20;
 export class PokemonService {
 
 	public selectedPokemon: Pokemon;
-	private initialPokemonsUrl = 'https://pokeapi.co/api/v2/pokemon';
-	private morePokemonsUrl: string;
 
 	constructor(private http: HttpClient) { }
 
-	public getPokemonList(): Observable<Pokemon[]> {
-		const pokemonsUrl = isNullOrUndefined(this.morePokemonsUrl) ? `${this.initialPokemonsUrl}?limit=${limit}` : this.morePokemonsUrl;
+	public getPokemonList(offset = 0): Observable<Pokemon[]> {
+		const pokemonsUrl = `${POKEMONS_URL}?limit=${LIMIT}&offset=${offset}`;
 		return this.http.get<Pokemon[]>(`${pokemonsUrl}`).pipe(
-			tap((data: any) => this.morePokemonsUrl = data.next),
 			map((data: any) => data.results),
 			catchError(error => this.handleError(error, []))
 		);
 	}
 
-	public getPokemonByName(url: string): Observable<Pokemon> {
+	public getPokemon(url: string): Observable<Pokemon> {
 		return this.http.get<Pokemon>(`${url}`).pipe(
 			catchError(error => this.handleError(error, new Pokemon()))
 		);

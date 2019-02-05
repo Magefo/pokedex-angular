@@ -18,7 +18,7 @@ export class PokemonCardComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
-		this.pokemonService.getPokemonByName(this.pokemon.url).subscribe((data: any) => {
+		this.pokemonService.getPokemon(this.pokemon.url).subscribe((data: any) => {
 			this.pokemon.imgUrl = data.sprites.front_default;
 			this.pokemon.data = data;
 		});
