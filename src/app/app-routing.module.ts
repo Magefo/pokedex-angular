@@ -11,7 +11,11 @@ const routes: Routes = [
 	{
 		path: 'pokemon',
 		component: DetailPageComponent
-	}
+	},
+	{
+		path: 'game',
+		loadChildren: './game/game.module#GameModule'
+	},
 ];
 
 @NgModule({
