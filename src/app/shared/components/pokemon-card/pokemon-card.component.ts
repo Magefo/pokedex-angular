@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Pokemon } from '../../models/pokemon';
 import { PokemonService } from '../../services/pokemon/pokemon.service';
 import { Router } from '@angular/router';
@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class PokemonCardComponent implements OnInit {
 
 	@Input() pokemon: Pokemon;
+	@Output() onSelectPokemon = new EventEmitter<Pokemon>();
 
 	constructor(
 		private router: Router,
@@ -22,6 +23,10 @@ export class PokemonCardComponent implements OnInit {
 			this.pokemon.imgUrl = data.sprites.front_default;
 			this.pokemon.data = data;
 		});
+	}
+
+	public select() {
+		this.onSelectPokemon.emit(this.pokemon);
 	}
 
 	public showDetail() {

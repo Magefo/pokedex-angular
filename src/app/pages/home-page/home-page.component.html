@@ -1,5 +1,10 @@
 <div class="container">
 	<div class="row">
-		<app-pokemon-card [pokemon]="pokemon" *ngFor="let pokemon of pokemons; let i=index" class="col-12 col-sm-6 col-md-4 col-xl-3"></app-pokemon-card>
+		<app-pokemon-card
+			[pokemon]="pokemon"
+			(onSelectPokemon)="selectPokemon($event)"
+			*ngFor="let pokemon of pokemons; let i=index"
+			class="col-12 col-sm-6 col-md-4 col-xl-3"
+		></app-pokemon-card>
 	</div>
 </div>

@@ -1,4 +1,4 @@
-<div class="pokemon-card" (click)="showDetail()">
+<div class="pokemon-card">
 	<div class="row no-gutters">
 		<div class="col-5 text-center">
 			<div class="pokemon-card-img">
@@ -7,7 +7,13 @@
 		</div>
 		<div class="col-7">
 			<div class="pokemon-card-info">
-				<h5>{{pokemon.name}}</h5>
+				<div class="row">
+					<div class="col-12"><h5>{{pokemon.name}}</h5></div>
+					<div class="col-12">
+						<button class="btn btn-sm btn-secondary m-1" (click)="select()">Select</button>
+						<button class="btn btn-sm btn-secondary m-1" (click)="showDetail()">detail</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

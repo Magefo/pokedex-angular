@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { GameRoutingModule } from './game-routing.module';
 import { GamePageComponent } from './game-page/game-page.component';
-import { GameService } from './services/game.service';
 
 @NgModule({
 	declarations: [
@@ -12,9 +11,6 @@ import { GameService } from './services/game.service';
 	imports: [
 		CommonModule,
 		GameRoutingModule
-	],
-	providers: [
-		GameService
 	]
 })
 export class GameModule { }

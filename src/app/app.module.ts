@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { PagesModule } from './pages/pages.module';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
+import { GameService } from './game/services/game.service';
 
 @NgModule({
 	declarations: [
@@ -18,7 +19,9 @@ import { SharedModule } from './shared/shared.module';
 		SharedModule,
 		PagesModule
 	],
-	providers: [],
+	providers: [
+		GameService
+	],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
