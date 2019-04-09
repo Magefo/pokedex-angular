@@ -43,9 +43,9 @@ export class HomePageComponent implements OnInit {
 
 	public selectPokemon(pokemon: Pokemon) {
 		if (isNullOrUndefined(this.gameService.player1)) {
-			this.gameService.player1 = pokemon.data.sprites.back_default;
+			this.gameService.player1 = pokemon;
 		} else {
-			this.gameService.player2 = pokemon.data.sprites.front_default;
+			this.gameService.player2 = pokemon;
 			this.router.navigateByUrl('game');
 		}
 	}

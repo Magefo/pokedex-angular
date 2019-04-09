@@ -3,4 +3,5 @@ export class Pokemon {
 	url: string;
 	imgUrl?: string;
 	data?: any;
+	playerId?: string;
 }

@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
+import { Pokemon } from 'src/app/shared/models/pokemon';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class GameService {
 
-	public player1: string;
-	public player2: string;
+	public player1: Pokemon;
+	public player2: Pokemon;
 
 	constructor() {
 		console.log('initialized game service');
