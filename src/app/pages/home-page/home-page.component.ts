@@ -1,19 +1,42 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { PokemonService } from 'src/app/shared/services/pokemon/pokemon.service';
 import { Pokemon } from 'src/app/shared/models/pokemon';
-import { EVENT_MANAGER_PLUGINS } from '@angular/platform-browser';
 import { GameService } from 'src/app/game/services/game.service';
 import { isNullOrUndefined } from 'util';
 import { Router } from '@angular/router';
+import { trigger, style, transition, animate } from '@angular/animations';
+import { of } from 'rxjs';
+import { delay, tap } from 'rxjs/operators';
 
 @Component({
 	selector: 'app-home-page',
 	templateUrl: './home-page.component.html',
-	styleUrls: ['./home-page.component.scss']
+	styleUrls: ['./home-page.component.scss'],
+	animations: [
+		trigger('listTrigger', [
+			transition(':enter', [
+				style({ opacity: 0 }),
+				animate('1s', style({ opacity: 1 }))
+			]),
+			transition(':leave', [
+				animate('1s', style({ opacity: 0 }))
+			])
+		]),
+		trigger('footerTrigger', [
+			transition(':leave', [
+				style({ bottom: 0 }),
+				animate('300ms ease-in', style({ bottom: -100 }))
+			])
+		]),
+	],
 })
 export class HomePageComponent implements OnInit {
 
 	public pokemons: Pokemon[] = [];
+	public showFooter = true;
+
+	get player1() { return this.gameService.player1; }
+	get player2() { return this.gameService.player2; }
 
 	constructor(
 		private router: Router,
@@ -45,8 +68,13 @@ export class HomePageComponent implements OnInit {
 		if (isNullOrUndefined(this.gameService.player1)) {
 			this.gameService.player1 = pokemon;
 		} else {
-			this.gameService.player2 = pokemon;
-			this.router.navigateByUrl('game');
+			of(pokemon).pipe(
+				tap(p =>  this.gameService.player2 = p),
+				delay(2000),
+				tap(_ => this.showFooter = false),
+				delay(300),
+				tap(_ => this.router.navigateByUrl('game'))
+			).subscribe();
 		}
 	}
 }

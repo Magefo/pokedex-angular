@@ -1,6 +1,7 @@
 <div class="container">
 	<div class="row">
 		<app-pokemon-card
+			@listTrigger
 			[pokemon]="pokemon"
 			(onSelectPokemon)="selectPokemon($event)"
 			*ngFor="let pokemon of pokemons; let i=index"
@@ -8,3 +9,4 @@
 		></app-pokemon-card>
 	</div>
 </div>
+<app-fight-footer class="fixed-bottom" @footerTrigger [player1]="player1" [player2]="player2" *ngIf="showFooter"></app-fight-footer>

@@ -1,0 +1,18 @@
+<div class="row">
+	<div class="col-6 bg-primary triangle" *ngIf="player1" @player1Transition>
+		<div class="row">
+			<div class="col-12 col-md-4 selected-pokemon mirror" [ngStyle]="getPokemonImage(player1)"></div>
+			<div class="d-none d-md-flex col-md-8 align-items-center">
+				<h2 class="text-white text-center w-100">{{player1.name | titlecase}}</h2>
+			</div>
+		</div>
+	</div>
+	<div class="col-6 bg-secondary triangle2" *ngIf="player2" @player2Transition>
+		<div class="row">
+			<div class="d-none d-md-flex col-md-8 align-items-center">
+				<h2 class="text-white text-center w-100">{{player2.name | titlecase}}</h2>
+			</div>
+			<div class="col-12 col-md-4 selected-pokemon" [ngStyle]="getPokemonImage(player2)"></div>
+		</div>
+	</div>
+</div>

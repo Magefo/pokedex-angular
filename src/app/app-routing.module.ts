@@ -6,15 +6,18 @@ import { DetailPageComponent } from './pages/detail-page/detail-page.component';
 const routes: Routes = [
 	{
 		path: '',
-		component: HomePageComponent
+		component: HomePageComponent,
+		data: { animation: 'HomePage' }
 	},
 	{
 		path: 'pokemon',
-		component: DetailPageComponent
+		component: DetailPageComponent,
+		data: { animation: 'DetailPage' }
 	},
 	{
 		path: 'game',
-		loadChildren: './game/game.module#GameModule'
+		loadChildren: './game/game.module#GameModule',
+		data: { animation: 'GamePage' }
 	},
 ];
 
